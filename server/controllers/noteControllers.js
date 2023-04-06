@@ -1,19 +1,30 @@
-const { getNote } = require('../database/queries/getNote');
+const { getNote } = require("../database/queries/getNote");
+const { postNote } = require("../database/queries/postNote");
 
 const getNoteControllers = (req, res) => {
   getNote()
+    .then((result) => {
+      res.json(result.rows);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
-    .then((result)=> {
-      
-      console.log(result)
-      res.json(result.rows)
-    }
-      )
-    .then(()=> res.redirect('/'))
-    .catch(() => { console.log("server error") });
+const postNoteController = (req, res) => {
+  const userNote = req.body;
+  console.log(userNote);
 
-}
+  postNote(userNote)
+    .then((data) => {
+      res.status(201).json({
+        data: data.rows
+      });
+    })
+    .catch((err) => console.log(err));
+};
 
-module.exports={
-  getNoteControllers
-}
+module.exports = {
+  getNoteControllers,
+  postNoteController
+};
