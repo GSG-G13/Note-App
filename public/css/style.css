@@ -7,6 +7,7 @@ body {
   margin: 0;
   padding: 0;
   font-size: 18px;
+  background: #eee;
 }
 
 
@@ -15,6 +16,7 @@ body {
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 20px;
+  background: #eee;
 }
 
 #note-editor {
@@ -23,6 +25,11 @@ body {
   border-bottom: 1px solid rgba(0,0,0,0.2);
   opacity: 1;
   transition: all 0.25s ease-out;
+}
+
+#note-editor-title{
+  font-size: 2.5rem;
+  color: dodgerblue;
 }
 
 #note-editor.hide {
@@ -35,12 +42,22 @@ label {
   margin-bottom: 15px;
 }
 
-input {
+input, #tags {
   font-size: 16px;
   display: block;
-  width: 355px;  
+  width: 98%;
+  background: transparent;
   margin-bottom: 15px;
-  padding: 8px 6px;
+  padding: 12px 10px;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 4px;
+  outline: none;
+}
+
+#tags{
+  width: 100%;
+  color: rgba(0,0,0,.7);
+  height: 48px;
 }
 
 input.is-empty {
@@ -49,9 +66,18 @@ input.is-empty {
 
 textarea {
   font-size: 16px;
+  width: 99%;
   display: block;
   margin-bottom: 15px;
   padding: 8px 6px;
+  border: 1px solid rgba(0,0,0,.2);
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  background: transparent;
+  outline: none;
 }
 
 textarea.is-empty {
@@ -68,14 +94,6 @@ textarea.is-empty {
   top: 12px;
   left: 150px;
   line-height: 16px;
-}
-
-select {
-  display: block;
-  margin-bottom: 15px;
-  width: 175px;
-  padding: 0;
-  height: 24px;
 }
 
 button {
@@ -104,6 +122,7 @@ ul {
   padding-left: 0;
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
 #notes-section {
@@ -118,16 +137,16 @@ ul {
 }
 
 #notes li {
-  border-left: 1px solid rgb(80, 80, 80);
-  list-style-type: none;
-  display: block;
-  min-height: 110px;
-  padding: 8px 12px;
-  margin: 0 5px 12px;
-  min-width: 340px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    border: 1px solid rgba(0,0,0,0.2);
+    list-style-type: none;
+    min-height: 110px;
+    padding: 8px 12px;
+    margin: 0 5px 12px;
+    border-radius: 8px;
+    min-width: 315px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #notes li.red {
@@ -171,17 +190,27 @@ footer {
 i:before {
   font-size: 18px;
 }
-
+.note-tag{
+  padding: 4px;
+  background: dodgerblue;
+  border-radius: 4px;
+  color: white;
+  font-size: 1.1rem;
+  text-transform: lowercase;
+}
+.note-tags{
+  margin-top: 13px;
+}
 .note-title {
   font-size: 1.5em;
   font-weight: bold;
   display: block;
   width: 100%;
   margin: 0;
-  margin-bottom: 24px;
+  margin-bottom: 10px;
 }
 
 .note-message {
   display: block;
-  width: 100%;
+  width: 98%;
 }

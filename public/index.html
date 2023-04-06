@@ -12,12 +12,21 @@
         <h2 id="note-editor-title">Create Note</h2>
         <form class="form">
           <label>Title:</label>
-          <input type="text" id="title" name="title" />
+          <input type="text" id="title" name="title" required />
           <label>Tag:</label>
-          <input type="text" id="tag" name="tag" />
-          <label>Body:</label>
-          <textarea rows="10" cols="42" id="message" name="body"></textarea>
-          <label>Color:</label>
+          <select id="tags" name="tags">
+            <option value="1" selected>Work</option>
+            <option value="2">Health</option>
+            <option value="3">Sport</option>
+          </select>
+          <label>Content:</label>
+          <textarea
+            rows="10"
+            cols="43"
+            id="message"
+            name="body"
+            required
+          ></textarea>
           <div id="button">
             <button id="add-btn" type="submit">Create Note</button>
           </div>

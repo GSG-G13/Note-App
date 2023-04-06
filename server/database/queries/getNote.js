@@ -2,10 +2,10 @@ const connection = require("../config/connection");
 
 const getNote = () => {
   return connection.query(
-    `SELECT * FROM note INNER JOIN tags on note.id = tags.note_id;`
+    `SELECT * FROM note LEFT JOIN tags on note.tag_id = tags.id;`
   );
 };
 
 module.exports = {
-  getNote
+  getNote,
 };

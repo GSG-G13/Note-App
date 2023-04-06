@@ -1,5 +1,5 @@
 const { getNote } = require("../database/queries/getNote");
-const { postNote } = require("../database/queries/postNote");
+const { postNote, getPostNote } = require("../database/queries/postNote");
 
 const getNoteControllers = (req, res) => {
   getNote()
@@ -13,18 +13,12 @@ const getNoteControllers = (req, res) => {
 
 const postNoteController = (req, res) => {
   const userNote = req.body;
-  console.log(userNote);
 
-  postNote(userNote)
-    .then((data) => {
-      res.status(201).json({
-        data: data.rows
-      });
-    })
-    .catch((err) => console.log(err));
+  postNote(userNote);
+  getPostNote().then((result) => {res.status(201).json(result.rows)});
 };
 
 module.exports = {
   getNoteControllers,
-  postNoteController
+  postNoteController,
 };
