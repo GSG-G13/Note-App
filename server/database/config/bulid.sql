@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS note cascade;
+DROP TABLE IF EXISTS note, tags cascade;
 
 CREATE TABLE note (
     id SERIAL PRIMARY KEY,
@@ -10,23 +10,20 @@ CREATE TABLE note (
 
 CREATE TABLE tags (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
+    name VARCHAR(50) NOT NULL,
+    note_id INTEGER REFERENCES note(id)
 );
 
-CREATE TABLE note_tags (
-    id SERIAL PRIMARY KEY,
-    note_id INTEGER REFERENCES note(id),
-    tag_id INTEGER REFERENCES tags(id)
-);
 
 
 INSERT INTO  note (title, body) VALUES 
     ('title', 'this is the body for the note'),
-    ('title1', 'this is the body for the note1');
+    ('title1', 'this is the body for the note1'),
+    ('title3', 'this is the body for the note3');
 
-INSERT INTO tags (name) VALUES
-    ('Work'),
-    ('sport'),
-    ('health');
+INSERT INTO tags (name, note_id) VALUES
+    ('Work', 1),
+    ('sport',2),
+    ('health',3);
  
 COMMIT;
