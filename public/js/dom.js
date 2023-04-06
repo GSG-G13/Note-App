@@ -1,30 +1,35 @@
 const noteList = document.querySelector("#notes");
 const form = document.querySelector(".form");
 
+// note creation
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const data = new FormData(form);
   const newData = Object.fromEntries(data);
+  console.log(newData);
 
   const obj = {
     title: newData.title,
-    body: newData.body
+    tag: newData.tags,
+    body: newData.body,
   };
   fetch("/create-note", {
     method: "POST",
     headers: {
       Accept: "application/json text/plain */*",
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(obj)
+    body: JSON.stringify(obj),
   })
     .then((result) => result.json())
     .then((data) => randerNoteItem(data.data));
+
+  location.reload();
 });
 
+// render items on
 const randerNoteItem = (notes) => {
-  noteList.innerHTML = "";
-  console.log("Rander");
+  console.log("Rander", notes);
 
   for (let i = 0; i < notes.length; i++) {
     const noteItem = document.createElement("li");
@@ -51,6 +56,7 @@ const randerNoteItem = (notes) => {
 
     const noteTag = document.createElement("mark");
     noteTag.classList.add("note-tag");
+    noteTag.textContent = notes[i].name;
     noteTags.appendChild(noteTag);
 
     noteList.appendChild(noteItem);
